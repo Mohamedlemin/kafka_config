@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.core.KafkaTemplate;
 
+import java.time.LocalDateTime;
+
 @SpringBootApplication
 public class KafkaExampleApplication {
 
@@ -15,9 +17,9 @@ public class KafkaExampleApplication {
     }
 
     @Bean
-    CommandLineRunner commandLineRunner(KafkaTemplate<String,String> kafkaTemplate){
+    CommandLineRunner commandLineRunner(KafkaTemplate<String, Message> kafkaTemplate) {
         return args -> {
-            kafkaTemplate.send("lemin","Hello kafaka");
+            kafkaTemplate.send("amigoscode", new Message("Hello From Kafka", LocalDateTime.now()));
         };
     }
 
